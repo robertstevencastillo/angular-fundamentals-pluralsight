@@ -2,8 +2,11 @@
 <div>Date: {{ event.date }}</div>
 <div>Time: {{ event.time }}</div>
 <app-event-detail-location
+  *ngIf="event?.location"
   [eventLocation]="event.location"
 ></app-event-detail-location>
+<div *ngIf="event?.onlineUrl">Online Url: {{ event.onlineUrl }}</div>
+
 <div>Attended Event: {{ event.attendedEvent ? 'Yes' : 'No' }}</div>
 <button class="btn btn-primary" (click)="attendedEventButtonClicked()">
   Attended Event

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from '../interfaces/events';
+import { Event } from '../interfaces/event.interface';
+import { EventsService } from '../services/events.service';
 
 @Component({
   selector: 'app-events',
@@ -7,23 +8,23 @@ import { Event } from '../interfaces/events';
   styleUrls: ['./events.component.css'],
 })
 export class EventsComponent implements OnInit {
-  constructor() {}
+  private _eventsService: EventsService;
+  public events: Event[] = [];
 
-  ngOnInit() {}
+  constructor(eventsService: EventsService) {
+    this._eventsService = eventsService;
+  }
 
-  event1: Event = {
-    name: 'ngConf 2025',
-    date: '3/1/2025',
-    time: '11am',
-    location: {
-      address: '123 Main St',
-      city: 'Salt Lake City, UT',
-      country: 'USA',
-    },
-    attendedEvent: false,
-  };
+  ngOnInit() {
+    this.events = this._eventsService.eventsList;
+  }
 
-  handleAttendedEventClick(result: boolean) {
-    this.event1.attendedEvent = result;
+  handleAttendedEventClick(result: any) {
+    const eventToUpdateIndex = this.events.findIndex((e) => e.id === result.id);
+
+    this.events[eventToUpdateIndex] = {
+      ...this.events[eventToUpdateIndex],
+      attendedEvent: result.attendedEvent,
+    };
   }
 }

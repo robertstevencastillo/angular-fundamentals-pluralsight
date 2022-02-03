@@ -5,9 +5,11 @@ export interface EventLocation {
 }
 
 export interface Event {
+  id: number;
   name: string;
   date: string;
   time: string;
-  location: EventLocation;
+  location?: EventLocation;
+  onlineUrl?: string;
   attendedEvent: boolean;
 }

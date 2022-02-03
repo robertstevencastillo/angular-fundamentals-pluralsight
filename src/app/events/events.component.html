@@ -1,7 +1,8 @@
 <div>
-  <h5>How does your event look below?</h5>
+  <h3>Events</h3>
   <app-event-detail
-    [event]="event1"
+    *ngFor="let event of events"
+    [event]="event"
     (attendedEvent)="handleAttendedEventClick($event)"
   ></app-event-detail>
 </div>

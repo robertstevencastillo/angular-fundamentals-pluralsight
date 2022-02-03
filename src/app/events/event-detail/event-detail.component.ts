@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Event } from '../../interfaces/events';
+import { Event } from '../../interfaces/event.interface';
 
 @Component({
   selector: 'app-event-detail',
@@ -12,10 +12,13 @@ export class EventDetailComponent implements OnInit {
   ngOnInit() {}
 
   @Input() event: Event;
-  @Output() attendedEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() attendedEvent: EventEmitter<any> = new EventEmitter<any>();
 
   attendedEventButtonClicked() {
-    const attendedEvent = !this.event.attendedEvent;
-    this.attendedEvent.emit(attendedEvent);
+    const result = {
+      id: this.event.id,
+      attendedEvent: !this.event.attendedEvent,
+    };
+    this.attendedEvent.emit(result);
   }
 }

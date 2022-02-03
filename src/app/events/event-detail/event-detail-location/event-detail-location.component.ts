@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EventLocation } from '../../../interfaces/events';
+import { EventLocation } from '../../../interfaces/event.interface';
 
 @Component({
   selector: 'app-event-detail-location',
