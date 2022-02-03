@@ -1,0 +1,10 @@
+<div style="margin-top:30px">Event: {{ event.name }}</div>
+<div>Date: {{ event.date }}</div>
+<div>Time: {{ event.time }}</div>
+<app-event-detail-location
+  [eventLocation]="event.location"
+></app-event-detail-location>
+<div>Attended Event: {{ event.attendedEvent ? 'Yes' : 'No' }}</div>
+<button class="btn btn-primary" (click)="attendedEventButtonClicked()">
+  Attended Event
+</button>
